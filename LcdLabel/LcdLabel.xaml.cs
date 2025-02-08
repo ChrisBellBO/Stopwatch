@@ -285,78 +285,13 @@ namespace LcdLabel
         grid = (Grid)LayoutRoot.Children[(row-1) * TextLines + col-1];
       }
 
-      charindex = charindex - first_c;
+      charindex -= first_c;
       
       for (var i = 0; i < pix_y; i++)
       {
         for (var j = 0; j < pix_x; j++)
         {
-          Brush currentBrush;
-          switch (DotMatrix)
-          {
-            case DotMatrix.mat5x7:
-              if (Matrix.Char5x7[charindex, i, j] == 1)
-                currentBrush = OnColour;
-              else
-                currentBrush = OffColour;
-              break;
-            case DotMatrix.mat5x8:
-              if (Matrix.Char5x8[charindex, i, j] == 1)
-                currentBrush = OnColour;
-              else
-                currentBrush = OffColour;
-              break;
-            case DotMatrix.Hitachi:
-              if (Matrix.CharHitachi[charindex, i, j] == 1)
-                currentBrush = OnColour;
-              else
-                currentBrush = OffColour;
-              break;
-            case DotMatrix.Hitachi2:
-              // Use full height for character 194 - 223
-              if (charindex <= 193)
-              {  // Normal Hitachi
-                if (i < 7)
-                {
-                  if (Matrix.CharHitachi[charindex, i, j] == 1)
-                    currentBrush = OnColour;
-                  else
-                    currentBrush = OffColour;
-                }
-                else
-                  currentBrush = OffColour;
-              }
-              else
-              {
-                // Extended height
-                if (Matrix.CharHitachiExt[charindex, i, j] == 1)
-                  currentBrush = OnColour;
-                else
-                  currentBrush = OffColour;
-              }
-              break;
-            case DotMatrix.mat7x9:
-              if (Matrix.Char7x9[charindex, i, j] == 1)
-                currentBrush = OnColour;
-              else
-                currentBrush = OffColour;
-              break;
-            case DotMatrix.mat9x12:
-              if (Matrix.Char9x12[charindex, i, j] == 1)
-                currentBrush = OnColour;
-              else
-                currentBrush = OffColour;
-              break;
-            case DotMatrix.dos5x7:
-              if (Matrix.CharDOS5x7[charindex, i, j] == 1)
-                currentBrush = OnColour;
-              else
-                currentBrush = OffColour;
-              break;
-            default:
-              throw new ArgumentException("Unrecognised DotMatrix - " + DotMatrix);
-          }
-
+          var currentBrush = GetBrush(charindex, i, j);
           Rectangle rectangle1;
           if (rebuild)
           {
@@ -373,6 +308,67 @@ namespace LcdLabel
           rectangle1.Stroke = Background;
           rectangle1.StrokeThickness = (double)MatrixSpacing / 2;
         }
+      }
+    }
+
+    private Brush GetBrush(int charindex, int i, int j)
+    {
+      switch (DotMatrix)
+      {
+        case DotMatrix.mat5x7:
+          if (Matrix.Char5x7[charindex, i, j] == 1)
+            return OnColour;
+          else
+            return OffColour;
+        case DotMatrix.mat5x8:
+          if (Matrix.Char5x8[charindex, i, j] == 1)
+            return OnColour;
+          else
+            return OffColour;
+        case DotMatrix.Hitachi:
+          if (Matrix.CharHitachi[charindex, i, j] == 1)
+            return OnColour;
+          else
+            return OffColour;
+        case DotMatrix.Hitachi2:
+          // Use full height for character 194 - 223
+          if (charindex <= 193)
+          {  // Normal Hitachi
+            if (i < 7)
+            {
+              if (Matrix.CharHitachi[charindex, i, j] == 1)
+                return OnColour;
+              else
+                return OffColour;
+            }
+            else
+              return OffColour;
+          }
+          else
+          {
+            // Extended height
+            if (Matrix.CharHitachiExt[charindex, i, j] == 1)
+              return OnColour;
+            else
+              return OffColour;
+          }
+        case DotMatrix.mat7x9:
+          if (Matrix.Char7x9[charindex, i, j] == 1)
+            return OnColour;
+          else
+            return OffColour;
+        case DotMatrix.mat9x12:
+          if (Matrix.Char9x12[charindex, i, j] == 1)
+            return OnColour;
+          else
+            return OffColour;
+        case DotMatrix.dos5x7:
+          if (Matrix.CharDOS5x7[charindex, i, j] == 1)
+            return OnColour;
+          else
+            return OffColour;
+        default:
+          throw new ArgumentException("Unrecognised DotMatrix - " + DotMatrix);
       }
     }
 
