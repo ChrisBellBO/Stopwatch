@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio Version 18
+VisualStudioVersion = 18.9.12112.369
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopwatch", "Stopwatch\Stopwatch.csproj", "{410C7416-43C1-40D9-8D26-699C91BF492A}"
 EndProject
@@ -19,7 +19,9 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{410C7416-43C1-40D9-8D26-699C91BF492A}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{410C7416-43C1-40D9-8D26-699C91BF492A}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{410C7416-43C1-40D9-8D26-699C91BF492A}.Debug|Any CPU.Build.0 = Debug|x64
+		{410C7416-43C1-40D9-8D26-699C91BF492A}.Debug|Any CPU.Deploy.0 = Debug|x64
 		{410C7416-43C1-40D9-8D26-699C91BF492A}.Debug|ARM.ActiveCfg = Debug|ARM
 		{410C7416-43C1-40D9-8D26-699C91BF492A}.Debug|ARM.Build.0 = Debug|ARM
 		{410C7416-43C1-40D9-8D26-699C91BF492A}.Debug|ARM.Deploy.0 = Debug|ARM
